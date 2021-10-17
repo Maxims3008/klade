@@ -1,0 +1,52 @@
+importa  sis
+importēt  argparse
+
+def  BIN2DEC ( vērtība , runīgs  =  "viltus" ):
+    decimālā_vērtība  =  0
+    indekss  =  len ( vērtība ) -  1
+    par  x  in  vērtības :
+        ja  daudzsološs  ==  'patiess' :
+            print ( "{}*(2 ** {}) {}" . formāts ( x , indekss , ( "+"  ja ( indekss  ! =  0 ) cits  "" )), beigas = '' )
+        decimal_value  += ( int ( x ) * ( 2 ** ( indekss )))
+        indekss  -=  1
+    ja  daudzsološs  ==  'patiess' :
+        drukāt ()
+    atgriezt  decimal_value
+
+def  dec2bin ( vērtība , daudznozīmīga  =  'nepatiesa' ):
+    binary_value  =  ""
+    true_value  =  int ( vērtība )
+    lielākā_jauda  =  0
+    Jaudas_rezultāts  =  0
+    kamēr ( 2 ** lielākā_jauda ) <  true_value :
+        lielākā_jauda  +=  1
+    lielākā_jauda  -=  1
+    ja  daudzsološs  ==  'patiess' :
+        print ( "{} lielākā iespējamā jauda no diviem ir {}" . formāts ( vērtība , lielākā_jauda ))
+    par  k  in  diapazonā ( largest_power , - 1 , - 1 ):
+        jauda_rezultāts  =   2  **  k
+        ja  power_result  >  true_value :
+            ja  daudzsološs  ==  'patiess' :
+                print ( "{0: <18} {1:^20} {2:> 10}" . format ( '(2 ** {})> {}' . format ( k , true_value ), 'tātad {}- 0 ' . Formāts ( true_value ), ' binārs+= 0 ' ))
+            binārā_vērtība  +=  "0"
+        cits :
+            ja  daudzsološs  ==  'patiess' :
+                print ( "{0: <18} {1:^20} {2:> 10}" . format ( '(2 ** {}) <{}' . format ( k , true_value ), 'tātad {}- {} ' . formāts ( true_value , power_result ), ' binārs+= 1 ' ))
+            true_value  =  true_value  -  jauda_rezultāts
+            binārā_vērtība  +=  "1"
+    atgriezt  bināro vērtību
+
+ja  __name__  ==  "__main__" :
+    parsētājs  =  argparse . ArgumentParser ( description = 'Pārvērst bināro par decimālo vai no decimāldaļa uz bināro.' )
+    parsētājs . add_argument ( '--b2d' , dest = 'bin2dec' ,   action = 'store_const' , const = bin2dec , help = 'Pārvērst bināro vērtību par decimālo' )
+    parsētājs . add_argument ( '--d2b' , dest = 'dec2bin' ,   action = 'store_const' , const = dec2bin , help = 'Konvertēt decimālo vērtību uz bināro' )
+    parsētājs . add_argument ( ' --verbose ' , noklusējuma = 'true' , help = 'Izdrukāt darbības aprakstu' )
+    parsētājs . add_argument ( 'vērtība' , palīdzība = 'konvertējamā vērtība' )
+    
+    args  =  parsētājs . parse_args ()
+    ja  args . bin2dec :
+        decimal_value  =  args . BIN2DEC ( args . vērtība , args . runīgs )
+        drukāt ( "Binārs" , args . vērtība , "līdz decimāldaļskaitlim ir" , decimal_value )
+    cits :
+        binārā_vērtība  =  args . DEC2BIN ( args . vērtība , args . runīgs )
+        drukāt ( "Decimal" , args . value , "to Binary is" , binary_value , "" )
